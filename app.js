@@ -1,7 +1,7 @@
 var app = angular.module("app", ['ngRoute']);
 var controllers = {};
 
-controllers.HeaderController = function HeaderController($scope, $location){
+controllers.HeaderController = function ($scope, $location){
 	$scope.isActive = function (viewLocation) {
 		return viewLocation === $location.url();
 	};
