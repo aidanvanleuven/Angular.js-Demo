@@ -1,20 +1,26 @@
 <div class="container">
+    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+    <input style="display:none" type="text" name="fakeusernameremembered"/>
+    <input style="display:none" type="text" name="fakepasswordremembered"/>
+    
 	<h2>Basic Data Manipulation</h2>
 	Name:
     <br />
-    <input id="filter" type="text" autocomplete="off" ng-model="filter.name" />
+    <input type="text" autocomplete="off" ng-model="filter.name" />
     <br />
     <ul>
     	<li ng-repeat="cust in customers | filter:filter.name | orderBy:'name'">{{ cust.name }} - {{ cust.city }}</li>
     </ul>
-    <br />
-    Customer Name: <br />
-    <input type="text" autocomplete="off" ng-model="newCustomer.name" />
-    <br />
-    Customer City: <br />
-    <input type="text" autocomplete="off" ng-model="newCustomer.city" />
-    <br />
-    <button class="btn" ng-click="addCustomer()" >Add Customer</button>
+    <form ng-submit="addCustomer();">
+        <br />
+        Customer Name: <br />
+        <input type="text" autocomplete="off" ng-model="newCustomer.name" />
+        <br />
+        Customer City: <br />
+        <input type="text" autocomplete="off" ng-model="newCustomer.city" />
+        <br />
+        <button type="submit" class="btn btn-primary" >Add Customer</button>
+    </form>
     <br />
     <br />
 </div>
