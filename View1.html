@@ -2,7 +2,7 @@
 	<h2>Basic Data Manipulation</h2>
 	Name:
     <br />
-    <input type="text" autocomplete="off" ng-model="filter.name" />
+    <input id="filter" type="text" autocomplete="off" ng-model="filter.name" />
     <br />
     <ul>
     	<li ng-repeat="cust in customers | filter:filter.name | orderBy:'name'">{{ cust.name }} - {{ cust.city }}</li>

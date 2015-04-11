@@ -16,11 +16,11 @@
     	<div class="container" style="margin:0;">
         	<div class="row">
             
-                <div class="span3">
+                <div class="span3" ng-controller="HeaderController">
                     <ul class="nav nav-list">
-                    <li class="nav-header">Navigation</li>
-                    <li id="view1" onClick="activeChange(this.id);" class="active"><a href="#/view1">View 1 (Data Manipulation)</a></li>
-                    <li id="view2" onClick="activeChange(this.id);"><a href="#/view2">View 2 (Distance Calculator)</a></li>
+                        <li class="nav-header">Navigation</li>
+                        <li id="view1" ng-class="{ active: isActive('/view1') }"><a href="#/view1">View 1 (Data Manipulation)</a></li>
+                        <li id="view2" ng-class="{ active: isActive('/view2') }"><a href="#/view2">View 2 (Distance Calculator)</a></li>
                     </ul>
                 </div>
     
@@ -29,19 +29,19 @@
                 </div>
             </div>
         </div>    
-        
-     <script>
-function activeChange(clicked_id) {
-		if (clicked_id == "view1"){
-			$("#view2").removeClass("active");
-			$("#view1").addClass("active");
-		}
-		if (clicked_id == "view2"){
-			$("#view2").addClass("active");
-			$("#view1").removeClass("active");
-		}
+	<!--
+	<script>
+function makeActive(clicked_id) {
+	if (clicked_id == "view1"){
+		$("#view2").removeClass("active");
+		$("#view1").addClass("active");
+	}
+	if (clicked_id == "view2"){
+		$("#view2").addClass("active");
+		$("#view1").removeClass("active");
+	}
 }
 	</script>
-        
+	-->
 	</body>
 </html>
