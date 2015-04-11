@@ -1,0 +1,19 @@
+<div class="container">
+	<h2>Distance Calculator</h2>
+	Distance From:
+	<br />
+	<input type="text" id="from" placeholder="Type any city or address..."  ng-model="calculate.From" />
+    <button class="btn" style="margin:0px 0px 10px 10px;" ng-click="currentLocation();">Current Location</button>
+	<br />
+    To:
+    <br />
+    <input type="text" placeholder="Type any city or address..." ng-model="calculate.To" />
+    <br />
+    <br />
+	<button class="btn" ng-click="calculate();">Calculate</button>
+    <br />
+    <br />
+    <p>{{ distance }}</p>
+    <p>{{ duration }}</p>
+    <br />
+</div>
