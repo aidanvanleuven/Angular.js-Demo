@@ -82,6 +82,19 @@ controllers.NavController = function($scope){
 	}	
 }
 
+function myCtrl($scope, $window){
+	$scope.module = {};
+	$scope.module.group = {};
+	$scope.module.group.items = [
+	{name:'Sunny'},
+	{name:'Mark'},
+	{name:'John'},
+	];
+	$scope.openCategory = function($event, name) {
+		$window.alert("Called " + name);
+	}
+}
+
 app.controller(controllers);
 
 app.config(function ($routeProvider){
