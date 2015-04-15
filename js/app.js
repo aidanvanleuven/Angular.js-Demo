@@ -7,7 +7,7 @@ controllers.HeaderController = function ($scope, $location){
 	};
 }
 
-controllers.SimpleController = function($scope, $location){
+controllers.SimpleController = function($scope){
 	$scope.customers = 
 	[{name : 'Dave Adams' ,  city : 'Phoenix'} , 
 	{name: 'Brad Baker' , city : 'Portland'} , 
@@ -16,12 +16,11 @@ controllers.SimpleController = function($scope, $location){
 	{name :'Robert Evans' , city : 'Boise'}]
 
 	$scope.addCustomer = function () {	
-		$scope.customers.push(
-			{
+		$scope.customers.push({
 				name: $scope.newCustomer.name,
 				city: $scope.newCustomer.city
-			});
-		}
+		});
+	}
 }
 
 controllers.NavController = function($scope){
@@ -82,20 +81,15 @@ controllers.NavController = function($scope){
 	}	
 }
 
-function myCtrl($scope, $window){
-	$scope.module = {};
-	$scope.module.group = {};
-	$scope.module.group.items = [
-	{name:'Sunny'},
-	{name:'Mark'},
-	{name:'John'},
-	];
-	$scope.openCategory = function($event, name) {
-		$window.alert("Called " + name);
+controllers.newController = function ($scope, $window){
+	$scope.myData = {};
+	$scope.myData.doClick = function() {
+	alert("Clicked!");	
 	}
 }
 
 app.controller(controllers);
+
 
 app.config(function ($routeProvider){
 	$routeProvider.when('/view1', {
@@ -106,6 +100,11 @@ app.config(function ($routeProvider){
 		controller: 'SimpleController',
 		controller: 'NavController',
 		templateUrl: 'View2.html'	
+	})
+	.when('/view3', {
+		controller: 'SimpleController',
+		controller: 'NewController',
+		templateUrl: 'View3.html'
 	})
 	.otherwise({ 
 		redirectTo: 'view1' 
