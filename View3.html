@@ -1,0 +1,49 @@
+<div class="container">
+	<h2>More Data</h2>
+    <div class="span4">
+        <ul class="nav nav-list">
+            <li class="nav-header">Customers</li>
+            <li ng-repeat="cust in customers | orderBy:'cust.lastname'" ng-class="{active: $index == selected}">
+            	<a ng-click="thing($index);" href="">{{ cust.lastname + ", " + cust.firstname }}</a>
+            </li>
+            <br>
+            <li>
+            	<button type="button" ng-class="{ 'btn': 'notClicked' , 'btn-primary': isClicked  }" ng-click="addNew();">Add</button>
+            </li>
+        </ul>
+    </div>
+    <div class="span1"></div>
+    
+    <div ng-show="showView" class="span5">
+        <form class="form-horizontal">
+            <div class="input-prepend">
+                <span class="add-on">First Name:</span>
+                <input ng-model="editFirstName" class="input-medium" type="text">
+            </div>
+        </form>
+        
+        <form class="form-horizontal">
+            <div class="input-prepend">
+                <span class="add-on">Last Name:</span>
+                <input ng-model="editLastName" class="input-medium" type="text">
+            </div>
+        </form>
+        
+        <form class="form-horizontal">
+            <div class="input-prepend">
+                <span class="add-on">City:</span>
+                <input ng-model="editCity" class="input-medium" type="text">
+            </div>
+        </form>
+        
+        <form class="form-horizontal">
+            <div class="input-prepend">
+                <span class="add-on">State:</span>
+                <input ng-model="editState" class="input-medium" type="text">
+            </div>
+        </form>
+            
+        <button class="btn btn-primary" ng-click="saveClick();">Save</button>
+    </div>
+    
+</div>

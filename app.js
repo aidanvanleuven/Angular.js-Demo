@@ -7,7 +7,7 @@ controllers.HeaderController = function ($scope, $location){
 	};
 }
 
-controllers.SimpleController = function($scope, $location){
+controllers.SimpleController = function($scope){
 	$scope.customers = 
 	[{name : 'Dave Adams' ,  city : 'Phoenix'} , 
 	{name: 'Brad Baker' , city : 'Portland'} , 
@@ -16,12 +16,82 @@ controllers.SimpleController = function($scope, $location){
 	{name :'Robert Evans' , city : 'Boise'}]
 
 	$scope.addCustomer = function () {	
-		$scope.customers.push(
-			{
+		$scope.customers.push({
 				name: $scope.newCustomer.name,
 				city: $scope.newCustomer.city
+		});
+	}
+}
+
+controllers.NewController = function($scope){
+	var addNew = false;
+	
+	
+	$scope.customers = 
+	[{
+	firstname : 'Dave' , 
+	lastname: 'Adams' ,  
+	city : 'Phoenix' ,
+	state : 'Arizona'
+	} , {
+	firstname: 'Brad' , 
+	lastname: 'Baker' , 
+	city : 'Portland' ,
+	state : 'Oregon'
+	} , {
+	firstname : 'Steve' , 
+	lastname: 'Cowls' , 
+	city : 'Houston' ,
+	state: 'Texas'
+	} , {
+	firstname : 'Kyle' , 
+	lastname: 'Davis' , 
+	city : 'Boston' ,
+	state: 'Massachusets'
+	} , {
+	firstname :'Robert' , 
+	lastname: 'Evans' , 
+	city : 'Boise' ,
+	state: 'Idaho'
+	}];
+	
+	$scope.thing = function(index){
+		$scope.selected = 0;
+		$scope.selected = index;
+		$scope.showView = true;	
+		$scope.editCity = $scope.customers[index].city;
+		$scope.editState = $scope.customers[index].state;
+		$scope.editFirstName = $scope.customers[index].firstname;
+		$scope.editLastName = $scope.customers[index].lastname;
+	}
+	
+	$scope.addNew = function(){
+		addNew == true;
+		$scope.editCity = "";
+		$scope.editState = "";
+		$scope.editFirstName = "";
+		$scope.editLastName = "";
+		$scope.notClicked = false;
+		$scope.isClicked = true;
+		$scope.showView = true;
+	}
+	
+	$scope.saveClick = function(){
+		if (addNew == true){
+			$scope.customers.push({
+			firstname: $scope.editFirstName,
+			lastname: $scope.editLastName,
+			city: $scope.editCity,
+			state: $scope.editState
 			});
+			$scope.notClicked = true;
+			$scope.isClicked = false;
+			$scope.showView = false;
+		} else {
+			alert("Working!")
 		}
+	}
+	
 }
 
 controllers.NavController = function($scope){
@@ -43,6 +113,7 @@ controllers.NavController = function($scope){
 				origin = results[0].geometry.location.k + "," + results[0].geometry.location.D;
 			} else if (status == "ZERO_RESULTS") {
 				$scope.distance = "No results found, please try again.";
+				$scope.duration = "";
 				$scope.$apply();
 			} else {
 				alert("There was an error!" + " " + status);
@@ -53,6 +124,7 @@ controllers.NavController = function($scope){
 				getDistance();		
 			} else if (status == "ZERO_RESULTS") {
 				$scope.distance = "No results found, please try again.";
+				$scope.duration = "";
 				$scope.$apply();	
 			} else {
 				alert("There was an error!" + " " + status);
@@ -84,6 +156,7 @@ controllers.NavController = function($scope){
 
 app.controller(controllers);
 
+
 app.config(function ($routeProvider){
 	$routeProvider.when('/view1', {
 		controller: 'SimpleController' ,
@@ -93,6 +166,10 @@ app.config(function ($routeProvider){
 		controller: 'SimpleController',
 		controller: 'NavController',
 		templateUrl: 'View2.html'	
+	})
+	.when('/view3', {
+		controller: 'NewController',
+		templateUrl: 'View3.html'
 	})
 	.otherwise({ 
 		redirectTo: 'view1' 
