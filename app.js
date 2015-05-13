@@ -20,12 +20,14 @@ controllers.SimpleController = function($scope){
 				name: $scope.newCustomer.name,
 				city: $scope.newCustomer.city
 		});
+		$scope.newCustomer.name = "";
+		$scope.newCustomer.city = "";
 	}
 }
 
 controllers.NewController = function($scope){
-	var addNew = false;
 	
+	$scope.add = "false";
 	
 	$scope.customers = 
 	[{
@@ -44,14 +46,14 @@ controllers.NewController = function($scope){
 	city : 'Houston' ,
 	state: 'Texas'
 	} , {
-	firstname : 'Kyle' , 
+	firstname: 'Kyle' , 
 	lastname: 'Davis' , 
-	city : 'Boston' ,
+	city: 'Boston' ,
 	state: 'Massachusets'
 	} , {
-	firstname :'Robert' , 
+	firstname: 'Robert' , 
 	lastname: 'Evans' , 
-	city : 'Boise' ,
+	city: 'Boise' ,
 	state: 'Idaho'
 	}];
 	
@@ -63,21 +65,28 @@ controllers.NewController = function($scope){
 		$scope.editState = $scope.customers[index].state;
 		$scope.editFirstName = $scope.customers[index].firstname;
 		$scope.editLastName = $scope.customers[index].lastname;
+		$scope.isClicked = false;
+		$scope.notClicked = true;
+		$scope.showButton = false;
+		$scope.add = "false";
 	}
 	
+	
 	$scope.addNew = function(){
-		addNew == true;
+		$scope.add = "true";
 		$scope.editCity = "";
 		$scope.editState = "";
 		$scope.editFirstName = "";
 		$scope.editLastName = "";
 		$scope.notClicked = false;
 		$scope.isClicked = true;
+		$scope.showButton = true
 		$scope.showView = true;
+		
 	}
 	
 	$scope.saveClick = function(){
-		if (addNew == true){
+		if ($scope.add = "true"){
 			$scope.customers.push({
 			firstname: $scope.editFirstName,
 			lastname: $scope.editLastName,
@@ -87,10 +96,18 @@ controllers.NewController = function($scope){
 			$scope.notClicked = true;
 			$scope.isClicked = false;
 			$scope.showView = false;
+			$scope.showButton = false;
 		} else {
 			alert("Working!")
 		}
 	}
+	
+	$scope.remove = function(index){
+		console.log(index)
+		console.log($scope.customers[index])
+		$scope.customers.splice(index, 1);
+	}
+		
 	
 }
 
@@ -110,7 +127,7 @@ controllers.NavController = function($scope){
 		var destination;
 		geocoder.geocode({ 'address' : $scope.calculate.From}, function(results, status){
 			if (status == google.maps.GeocoderStatus.OK) {
-				origin = results[0].geometry.location.k + "," + results[0].geometry.location.D;
+				origin = results[0].geometry.location.A + "," + results[0].geometry.location.F;
 			} else if (status == "ZERO_RESULTS") {
 				$scope.distance = "No results found, please try again.";
 				$scope.duration = "";
@@ -120,7 +137,7 @@ controllers.NavController = function($scope){
 			}
 		geocoder.geocode ( { 'address' : $scope.calculate.To}, function (results, status){
 			if (status == google.maps.GeocoderStatus.OK) {
-				destination = results[0].geometry.location.k + "," + results[0].geometry.location.D;
+				destination = results[0].geometry.location.A + "," + results[0].geometry.location.F;
 				getDistance();		
 			} else if (status == "ZERO_RESULTS") {
 				$scope.distance = "No results found, please try again.";
@@ -130,6 +147,8 @@ controllers.NavController = function($scope){
 				alert("There was an error!" + " " + status);
 			}
 		});
+		$scope.calculate.From = "";
+		$scope.calculate.To = "";
 	});
 	
 	function getDistance(){
@@ -144,8 +163,9 @@ controllers.NavController = function($scope){
 		if (status == google.maps.DistanceMatrixStatus.OK){
 			$scope.distance = response.rows[0].elements[0].distance.text;
 			$scope.duration = response.rows[0].elements[0].duration.text;
-			console.log(response.rows[0]);
 			$scope.$apply();
+			$scope.calculate.From = "";
+			$scope.calculate.To = "";
 		} else {
 			alert("There was an error!" + " " + status);
 		}

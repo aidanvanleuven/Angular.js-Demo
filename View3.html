@@ -4,7 +4,10 @@
         <ul class="nav nav-list">
             <li class="nav-header">Customers</li>
             <li ng-repeat="cust in customers | orderBy:'cust.lastname'" ng-class="{active: $index == selected}">
-            	<a ng-click="thing($index);" href="">{{ cust.lastname + ", " + cust.firstname }}</a>
+            	<a ng-click="thing($index);" href="">
+                {{ cust.lastname + ", " + cust.firstname }} 
+               	 <!--<i ng-click="remove($index);" title="Delete" style="float:right" class="icon-minus"></i>-->
+                </a>
             </li>
             <br>
             <li>
@@ -43,7 +46,7 @@
             </div>
         </form>
             
-        <button class="btn btn-primary" ng-click="saveClick();">Save</button>
+        <button class="btn btn-primary" ng-show="showButton" ng-click="saveClick();">Save</button>
     </div>
     
 </div>
