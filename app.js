@@ -73,6 +73,7 @@ controllers.NewController = function($scope){
 	
 	
 	$scope.addNew = function(){
+		$scope.selected = null;
 		$scope.add = "true";
 		$scope.editCity = "";
 		$scope.editState = "";
@@ -174,6 +175,10 @@ controllers.NavController = function($scope){
 	}	
 }
 
+controllers.EventController = function($scope){
+	
+}
+
 app.controller(controllers);
 
 
@@ -190,6 +195,10 @@ app.config(function ($routeProvider){
 	.when('/view3', {
 		controller: 'NewController',
 		templateUrl: 'View3.html'
+	})
+	.when('/view4', {
+		controller: 'EventController',
+		templateUrl: 'View4.html'
 	})
 	.otherwise({ 
 		redirectTo: 'view1' 
