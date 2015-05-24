@@ -1,0 +1,121 @@
+<!doctype html>
+<html ng-app="app">
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqcCWj4kF9oVx9M29t4kMG5lgtVblp9n0"></script>
+        <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="/new/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/new/css/dashboard.css">
+		<link rel="stylesheet" type="text/css" href="/new/css/bootstrap.min.css">
+        
+		<meta charset="utf-8">
+		<title>Test Application (Angular)</title>
+	</head>
+	<body>
+	<script>
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+    </script>
+    
+    <style>
+    body {
+      padding-top: 51px;  
+    }
+    .text-center {
+      padding-top: 20px;
+    }
+    .col-xs-12 {
+      background-color: #fff;
+    }
+    #sidebar {
+      height: 100%;
+      padding-right: 0;
+      padding-top: 20px;
+    }
+    #sidebar .nav {
+      width: 95%;
+    }
+    #sidebar li {
+      border:0 #f2f2f2 solid;
+      border-bottom-width:1px;
+    }
+    
+    /* collapsed sidebar styles */
+    @media screen and (max-width: 767px) {
+      .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+      }
+      .row-offcanvas-right
+      .sidebar-offcanvas {
+        right: -41.6%;
+      }
+    
+      .row-offcanvas-left
+      .sidebar-offcanvas {
+        left: -41.6%;
+      }
+      .row-offcanvas-right.active {
+        right: 41.6%;
+      }
+      .row-offcanvas-left.active {
+        left: 41.6%;
+      }
+      .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 41.6%;
+      }
+      #sidebar {
+        padding-top:0;
+      }
+    }
+    </style>
+        <div class="page-container">
+      
+        <!-- navbar -->
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">Angular + Bootstrap</div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="container">
+              <div class="row row-offcanvas row-offcanvas-left">
+                
+                <!-- sidebar -->
+                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    <ul class="nav">
+                        <li ng-class="{ active: isActive('/view1') }"><a href="#/view1">View 1 (Data Manipulation)</a></li>
+                        <li ng-class="{ active: isActive('/view2') }"><a href="#/view2">View 2 (Distance Calculator)</a></li>
+                        <li ng-class="{ active: isActive('/view3') }"><a href="#/view3">View 3 (More Data)</a></li>
+                        <li ng-class="{ active: isActive('/view4') }"><a href="#/view4">View 4 (Events)</a></li>              
+                    </ul>
+                </div>
+        
+                <div class="col-xs-12 col-sm-9">
+                  <div ng-view=""></div>
+                </div>
+            </div>
+          </div>
+        </div>
+	</body>
+</html>
