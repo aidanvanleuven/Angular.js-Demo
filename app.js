@@ -1,3 +1,12 @@
+//close nav bar onclick for mobile devices
+function changePage() {
+	if ($(window).width() < 992) {
+		$('.navmenu').offcanvas('toggle');
+	}
+}
+
+
+
 var app = angular.module("app", ['ngRoute']);
 var controllers = {};
 
